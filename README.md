@@ -2,20 +2,29 @@
 
 ## Introduction
 
-Here is the pratical and repeatable example to run kafka example. No more blogs or code snippets and we're making it easier with docker.
+We implement a painless kafka client for developers.
 
-## Setup
+It's pratical and repeatable because of docker. Everybody can run it within seconds.
 
-This client relies on ZooKeeper and Kafka server so we setup these containers.
+## Setup Kafka
+
+The client relies on ZooKeeper and Kafka and we should setup [standalone-kafka](https://github.com/tobegit3hub/standalone-kafka) with one command.
 
 ```
-docker run -d -p 2181:2181 tobegit3hub/standalone-zookeeper
+sudo docker run -d --net=host tobegit3hub/standalone-kafka
 ```
-
-TODO: Build the standalone-kafka image
 
 ## Usage
 
+Run with docker container.
+
 ```
-mvn exec:java -Dexec.mainClass="cn.chendihao.SmokeKafka"
+sudo docker run -i -t --net=host tobegit3hub/smoke-kafka
+```
+
+Or compile source code with maven.
+
+```
+mvn clean package
+sh ./target/smoke-kafka-1.0-SNAPSHOT/bin/smoke-kafka.sh
 ```
