@@ -10,7 +10,7 @@ RUN apt-get install -y maven
 ADD . /smoke-kafka
 WORKDIR /smoke-kafka
 
-#RUN mvn clean package
+RUN mvn clean package
 
 # Start kafka
 CMD sh ./target/smoke-kafka-1.0-SNAPSHOT/bin/smoke-kafka.sh
