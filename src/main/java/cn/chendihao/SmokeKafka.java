@@ -40,6 +40,7 @@ public class SmokeKafka {
         ProducerConfig config = new ProducerConfig(props);
         Producer<String, String> producer = new Producer<String, String>(config);
 
+
         // Produce data in kafka
         long events = 5;
         Random random = new Random();
@@ -55,15 +56,14 @@ public class SmokeKafka {
         // Close producer
         producer.close();
 
-
         // New consumer
         String groupId = "test-group";
         Properties props2 = new Properties();
         props2.put("zookeeper.connect", zookeeper);
         props2.put("group.id", groupId);
-        props2.put("zookeeper.session.timeout.ms", "4000");
-        props2.put("zookeeper.sync.time.ms", "2000");
-        props2.put("auto.commit.interval.ms", "10000");
+        props2.put("zookeeper.session.timeout.ms", "400");
+        props2.put("zookeeper.sync.time.ms", "200");
+        props2.put("auto.commit.interval.ms", "1000");
         ConsumerConnector consumer = Consumer.createJavaConsumerConnector(new ConsumerConfig(props2));
         Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
 
@@ -81,7 +81,7 @@ public class SmokeKafka {
             threadNum++;
         }
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
